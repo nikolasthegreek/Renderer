@@ -6,11 +6,11 @@ class Matrix {
 		//basic characteristics and operations with matrixces
 		Matrix();//Basic constructor
 		~Matrix();//Destructor
-		float GetMtrx(const int row, const int col);//Get fucntion to extract data from matrix
-		void SetMtrx(const int row, const int col);//Set fuction to incer data to matrix
-		const Matrix operator*(const Matrix& other);//multiplication fuction of matrixces 
+		float GetMtrx(const int row, const int col)const;//Get fucntion to extract data from matrix
+		void SetMtrx(const int row, const int col, const float val);//Set fuction to incer data to matrix
+		const Matrix operator*(const Matrix& mult);//multiplication fuction of matrixes 
 
-		void Set(const Matrix& Copy);//copies another matrix
+		void Set(const Matrix& copy);//copies another matrix
 		void Wipe();//makes all values 0
 		void SetIdentity();//sets ones on the main diagonal
 
