@@ -145,11 +145,13 @@
     <ClInclude Include="Rasteriser.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Rasteriser.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rasteriser.rc" />
