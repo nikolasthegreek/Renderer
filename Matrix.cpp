@@ -1,5 +1,6 @@
 #include "Matrix.h"
 #include <math.h>
+#define PI 3.1415926535897932384626433832795
 
 Matrix::Matrix(){
 	Wipe();
@@ -56,4 +57,39 @@ void Matrix::SetIdentity() {
 	for (int i = 0; i < 4; i++){
 		_Mtrx[i][i] = 1.0f;
 	}
+}
+
+void Matrix::SetRotX(float deg) {
+	float rad = deg * PI / 180.0f;
+	SetIdentity();
+	_Mtrx[0][0] = cos(rad); _Mtrx[0][2] = sin(rad);
+	_Mtrx[2][0] = -sin(rad); _Mtrx[2][2] = cos(rad);
+}
+
+void Matrix::SetRotY(float deg) {
+	float rad = deg * PI / 180.0f;
+	SetIdentity();
+	_Mtrx[0][0] = cos(rad); _Mtrx[0][2] = sin(rad);
+	_Mtrx[2][0] = -sin(rad); _Mtrx[2][2] = cos(rad);
+}
+
+void Matrix::SetRotZ(float deg) {
+	float rad = deg * PI / 180.0f;
+	SetIdentity();
+	_Mtrx[0][0] = cos(rad); _Mtrx[0][1] = -sin(rad);
+	_Mtrx[1][0] = sin(rad); _Mtrx[1][1] = cos(rad);
+}
+
+void Matrix::SetTrans(float X, float Y, float Z) {
+	SetIdentity();
+	_Mtrx[0][3] = X;
+	_Mtrx[1][3] = Y;
+	_Mtrx[2][3] = Z;
+}
+
+void Matrix::SetScale(float X, float Y, float Z) {
+	SetIdentity();
+	_Mtrx[0][0] = X;
+	_Mtrx[1][1] = Y;
+	_Mtrx[2][2] = Z;
 }
