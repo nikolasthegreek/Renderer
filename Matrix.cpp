@@ -93,3 +93,59 @@ void Matrix::SetScale(float X, float Y, float Z) {
 	_Mtrx[1][1] = Y;
 	_Mtrx[2][2] = Z;
 }
+
+void Matrix::SetViewMatrix(const Vertex& camera_position, const Vertex& view_vector, const Vertex& up_vector) {
+}
+
+
+void Matrix::SetCamera(float RotX, float RotY, float RotZ, float PosX, float PosY, float PosZ) {
+	Matrix Camera, CameraPos, CameraRotX, CameraRotY, CameraRotZ;
+	CameraPos.SetTrans(-PosX, -PosY, -PosZ);
+	CameraRotX.SetRotX(-RotX);
+	CameraRotY.SetRotY(-RotY);
+	CameraRotZ.SetRotZ(-RotZ);
+	Camera = CameraPos*CameraRotZ;
+	Camera = Camera * CameraRotY;
+	Camera = Camera * CameraRotX;
+	Set(Camera);
+}
+
+void Matrix::SetOrtho(float d) {
+	Wipe();
+	_Mtrx[0][0] = d;
+	_Mtrx[1][1] = d;
+	_Mtrx[2][2] = d;
+	_Mtrx[3][3] = 1.0f;
+
+}
+
+void Matrix::SetPerspective(float d, float Ratio) {
+	Wipe();
+	_Mtrx[0][0] = -d / Ratio;
+	_Mtrx[1][1] = -d;
+	_Mtrx[2][2] = -d;
+	_Mtrx[3][2] = 1.0f;
+
+}
+
+void Matrix::SetViewvolume(float left, float right, float bottom, float top, float front, float rear) {
+	float width = right - left;
+	float height = top - bottom;
+	float depth = front - rear;
+	SetIdentity();
+	_Mtrx[0][0] = 1.0f / width;
+	_Mtrx[1][1] = 1.0f / height;
+	_Mtrx[2][2] = 1.0f / depth;
+}
+
+void Matrix::SetViewport(int left, int right, int top, int bottom) {
+	int width = right - left;
+	int height = bottom - top;
+	SetIdentity();
+	_Mtrx[0][0] = width;
+	_Mtrx[1][1] = -height;
+	_Mtrx[2][2] = 1.0f; //for keeping depth
+	_Mtrx[0][3] = left + width / 2.0f;
+	_Mtrx[1][3] = top + height / 2.0f;
+	_Mtrx[2][3] = 0.0f; //depth buffer
+}

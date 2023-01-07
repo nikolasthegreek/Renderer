@@ -1,4 +1,6 @@
 #pragma once
+#include"Vertex.h"
+
 class Matrix {
 	private: float _Mtrx[4][4];//The Matrix data
 	
@@ -19,4 +21,12 @@ class Matrix {
 		void SetRotZ(float deg);//sets the matrix as a rotation matrix for the Z axis
 		void SetTrans(float X,float Y,float Z);
 		void SetScale(float X, float Y, float Z);
+
+		//camera related functions
+		void SetViewMatrix(const Vertex& camera_position, const Vertex& view_vector, const Vertex& up_vector);//sets the view matrix
+		void SetCamera(float xRotation, float yRotation, float zRotation, float xPosition, float yPosition, float zPosition);//sets the position and rotation of the cammera
+		void SetOrtho(float d);
+		void SetPerspective(float d, float aspectRatio);
+		void SetViewvolume(float left, float right, float bottom, float top, float front, float rear);
+		void SetViewport(int left, int right, int top, int bottom);
 };

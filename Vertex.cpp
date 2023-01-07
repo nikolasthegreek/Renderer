@@ -1,29 +1,19 @@
 #include "Vertex.h"
 #include <math.h>
 
-Vertex::Vertex()
-{
+Vertex::Vertex() {
 	_X = 0.0f;
 	_Y = 0.0f;
 	_Z = 0.0f;
 	_W = 1.0f;
 }
 
-Vertex::Vertex(float x, float y, float z)
-{
+Vertex::Vertex(float x, float y, float z) {
 	_X = x;
 	_Y = y;
 	_Z = z;
 	_W = 1.0f;
 }
-
-Vertex::Vertex(const Vertex& v) {
-	_X = v.GetX();
-	_Y = v.GetY();
-	_Z = v.GetZ();
-	_W = v.GetW();
-}
-
 Vertex::~Vertex() {}
 
 void Vertex::Dehomogenise() {
@@ -35,15 +25,15 @@ void Vertex::Dehomogenise() {
 
 float Vertex::Length() {
 	Dehomogenise();
-	return sqrt(_X * _X + _Y * _Y + _Z * _Z);
+	return sqrt(pow(_X,2)+pow(_Y,2)+pow(_Z,2));
 }
 
 void Vertex::Normalise() {
 	Dehomogenise();
-	float len = Length();
-	_X = _X / len;
-	_Y = _Y / len;
-	_Z = _Z / len;
+	float length = Length();
+	_X = _X / length;
+	_Y = _Y / length;
+	_Z = _Z / length;
 	_W = 1.0f;
 }
 
@@ -79,9 +69,7 @@ float Vertex::GetW() const {
 void Vertex::SetW(const float w) {
 	_W = w;
 }
-bool Vertex::operator==(const Vertex& Vect) const
-{
-	//They have to be dehomogenised before the comparison
+bool Vertex::operator==(const Vertex& Vect) {
 	return ((_Z == Vect.GetX()) && (_Y == Vect.GetY()) && (_Z == Vect.GetZ()));
 }
 
@@ -98,6 +86,5 @@ float Vertex::DotProduct(const Vertex& Vert) const {
 }
 
 Vertex Vertex::CrossProduct(const Vertex& Vert) const {
-	
 	return Vertex(_Y * Vert.GetZ() - _Z * Vert.GetY(), _Z * Vert.GetX() - _X * Vert.GetZ(), _X * Vert.GetY() - _Y * Vert.GetX());
 }

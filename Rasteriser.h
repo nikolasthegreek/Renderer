@@ -1,5 +1,6 @@
 #pragma once
 #include "Framework.h"
+#include "Matrix.h"
 
 using namespace std;
 
@@ -12,7 +13,6 @@ class Rasteriser : public Framework
 	public:
 	
 	virtual void RenderScene(HDC hdc);
-	virtual void OnLButtonDown(HWND hWnd, LPARAM lParam);
 
 };
 

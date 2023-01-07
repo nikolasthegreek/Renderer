@@ -180,8 +180,3 @@ LRESULT Framework::MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam
 void Framework::RenderScene(HDC hdc)
 {
 }
-
-void Framework::OnLButtonDown(HWND hWnd, LPARAM lParam)
-{
-}
-

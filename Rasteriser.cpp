@@ -22,10 +22,3 @@ void Rasteriser::RenderScene(HDC hdc)
 	DeleteObject(brush);
 
 }
-
-void Rasteriser::OnLButtonDown(HWND hWnd, LPARAM lParam)
-{
-	//=== Add Code of what happens in Mouse Left Button is down =====
-
-
-}

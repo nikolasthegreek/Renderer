@@ -2,6 +2,7 @@
 
 #include <windows.h>
 #include "resource.h"
+#include "Matrix.h"
 
 class Framework
 {
